@@ -23,6 +23,7 @@ const _mounts = {
 	api: require('./api'),
 	admin: require('./admin'),
 	feed: require('./feeds'),
+	'well-known': require('./well-known'),
 };
 
 _mounts.main = (app, middleware, controllers) => {
@@ -158,6 +159,7 @@ function addCoreRoutes(app, router, middleware, mounts) {
 	_mounts.main(router, middleware, controllers);
 	_mounts.mod(router, middleware, controllers);
 	_mounts.globalMod(router, middleware, controllers);
+	_mounts['well-known'](router, middleware, controllers);
 
 	addRemountableRoutes(app, router, middleware, mounts);
 
